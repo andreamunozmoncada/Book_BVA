@@ -1,21 +1,22 @@
 import { DeleteResult, UpdateResult } from "typeorm";
 import { BaseService } from "../config/base.service";
-import { PriorityDTO } from "../priority/DTOs/priority.dto";
-import { PriorityEntity } from "../priority/entities/priority.entity";
+import { book_bvaDTO } from "../book_bva/DTOs/book.dto";
+import { book_bvaEntity } from "../book_bva/entities/book.entity";
+
 
 
 export class book_bvaService extends BaseService<book_bvaEntity> {
   constructor() {
-    super(bookEntity);
+    super(book_bvaEntity);
   }
 
-  async findAllbooks(): Promise<bookEntity[]> {
+  async findAllbooks(): Promise<book_bvaEntity[]> {
     return (await this.execRepository).find();
   }
-  async findbooksById(id: string): Promise<PriorityEntity | null> {
+  async findbooksById(id: string): Promise<book_bvaEntity | null> {
     return (await this.execRepository).findOneBy({ id });
   }
-  async createbook(body: PriorityDTO): Promise<PriorityEntity> {
+  async createbook(body: book_bvaDTO): Promise<book_bvaEntity> {
     return (await this.execRepository).save(body);
   }
   async deletebook(id: string): Promise<DeleteResult> {
@@ -23,7 +24,7 @@ export class book_bvaService extends BaseService<book_bvaEntity> {
   }
   async updatebook(
     id: string,
-    infoUpdate: PriorityDTO
+    infoUpdate: book_bvaDTO
   ): Promise<UpdateResult> {
     return (await this.execRepository).update(id, infoUpdate);
   }
